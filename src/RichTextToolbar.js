@@ -123,16 +123,21 @@ export default class RichTextToolbar extends Component {
 
   render() {
     return (
-      <View
-          style={[{height: 50, backgroundColor: '#D3D3D3', alignItems: 'center'}, this.props.style]}
-      >
-        <ListView
-            horizontal
-            contentContainerStyle={{flexDirection: 'row'}}
-            dataSource={this.state.ds}
-            renderRow= {(row) => this._renderAction(row.action, row.selected)}
-        />
-      </View>
+        <View
+            style={[{height: 50, alignItems: 'center'}, this.props.style]}>
+          <ListView
+              ref={r => this.refToolbar = r}
+              onLayout={event => {
+                //const {x, y} = event.nativeEvent.layout;
+                // refToolbar won't show if not use scroll
+                this.refToolbar.scrollTo({x: 5, y: 5});
+              }}
+              horizontal
+              contentContainerStyle={{flexDirection: 'row'}}
+              dataSource={this.state.ds}
+              renderRow={(row) => this._renderAction(row.action, row.selected)}
+          />
+        </View>
     );
   }
 
