@@ -32,6 +32,7 @@ export const actions = {
   insertBulletsList: 'unorderedList',
   insertOrderedList: 'orderedList',
   insertLink: 'INST_LINK',
+  openDirectory: 'OPEN_FILE_DIRECTORY',
   updateLink: 'UPDATE_LINK',
   insertImage: 'INST_IMAGE',
   setSubscript: 'subscript',

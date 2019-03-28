@@ -9,7 +9,8 @@ const defaultActions = [
   actions.setItalic,
   actions.insertBulletsList,
   actions.insertOrderedList,
-  actions.insertLink
+  actions.insertLink,
+  //actions.openDirectory
 ];
 
 function getDefaultIcon() {
@@ -20,6 +21,7 @@ function getDefaultIcon() {
   texts[actions.insertBulletsList] = require('../img/icon_format_ul.png');
   texts[actions.insertOrderedList] = require('../img/icon_format_ol.png');
   texts[actions.insertLink] = require('../img/icon_format_link.png');
+  //texts[actions.openDirectory] = require('../img/attach.png');
   return texts;
 }
 
@@ -37,6 +39,7 @@ export default class RichTextToolbar extends Component {
     unselectedButtonStyle: PropTypes.object,
     renderAction: PropTypes.func,
     iconMap: PropTypes.object,
+    openDirectory: PropTypes.func
   };
 
   constructor(props) {
@@ -184,6 +187,10 @@ export default class RichTextToolbar extends Component {
           this.props.onPressAddImage();
         }
         break;
+
+      case actions.openDirectory:
+        if (this.props.openDirectory)
+          this.props.openDirectory();
         break;
     }
   }
