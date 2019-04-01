@@ -10,18 +10,18 @@ const defaultActions = [
   actions.insertBulletsList,
   actions.insertOrderedList,
   actions.insertLink,
-  //actions.openDirectory
+  actions.openDirectory
 ];
 
 function getDefaultIcon() {
   const texts = {};
-  texts[actions.insertImage] = require('../img/icon_format_media.png');
-  texts[actions.setBold] = require('../img/icon_format_bold.png');
-  texts[actions.setItalic] = require('../img/icon_format_italic.png');
-  texts[actions.insertBulletsList] = require('../img/icon_format_ul.png');
-  texts[actions.insertOrderedList] = require('../img/icon_format_ol.png');
-  texts[actions.insertLink] = require('../img/icon_format_link.png');
-  //texts[actions.openDirectory] = require('../img/attach.png');
+  texts[actions.insertImage] = require('./img/image.png');
+  texts[actions.setBold] = require('./img/bold.png');
+  texts[actions.setItalic] = require('./img/italic.png');
+  texts[actions.insertBulletsList] = require('./img/dot.png');
+  texts[actions.insertOrderedList] = require('./img/number.png');
+  texts[actions.insertLink] = require('./img/links.png');
+  texts[actions.openDirectory] = require('./img/attach.png');
   return texts;
 }
 
@@ -44,7 +44,7 @@ export default class RichTextToolbar extends Component {
 
   constructor(props) {
     super(props);
-    const actions = this.props.actions ? this.props.actions : defaultActions;
+    const actions = props.actions ? props.actions : defaultActions;
     this.state = {
       editor: undefined,
       selectedItems: [],
@@ -108,7 +108,7 @@ export default class RichTextToolbar extends Component {
       <TouchableOpacity
           key={action}
           style={[
-            {height: 50, width: 50, justifyContent: 'center'},
+            {width: 50, justifyContent: 'center', alignItems: 'center'},
             selected ? this._getButtonSelectedStyle() : this._getButtonUnselectedStyle()
           ]}
           onPress={() => this._onPress(action)}
@@ -133,7 +133,7 @@ export default class RichTextToolbar extends Component {
               onLayout={event => {
                 //const {x, y} = event.nativeEvent.layout;
                 // refToolbar won't show if not use scroll
-                this.refToolbar.scrollTo({x: 5, y: 5});
+                this.refToolbar.scrollTo({x: 2, y: 2});
               }}
               horizontal
               contentContainerStyle={{flexDirection: 'row'}}
